@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   react-node-app:
-    image: sulemankhan/react-nodejs-app:1.2
+    image: ${IMAGE}
     ports:
       - 3000:3080
   postgres:

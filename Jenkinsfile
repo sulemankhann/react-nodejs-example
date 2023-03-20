@@ -10,7 +10,7 @@ library identifier: 'jenkins-shared-library@master', retriever: modernSCM(
 pipeline {
     agent any
     environment {
-        IMAGE_NAME = 'sulemankhan/react-nodejs-app:1.2'
+        IMAGE_NAME = 'sulemankhan/react-nodejs-app:1.3'
     }
     stages {
         stage('Test') {
@@ -33,7 +33,7 @@ pipeline {
             steps {
                 script {
                     echo 'deploying docker image to EC2...'
-                    def shellCmd = "bash ./deploy.sh"
+                    def shellCmd = "bash ./deploy.sh ${env.IMAGE_NAME}"
                     sshagent(['ec2-server-key']) {
                         sh "scp deploy.sh ec2-user@15.206.164.87:/home/ec2-user"
                         sh "scp docker-compose.yml ec2-user@15.206.164.87:/home/ec2-user"
